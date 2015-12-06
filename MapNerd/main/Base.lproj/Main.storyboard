@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--GameVC-->
         <scene sceneID="Zzo-Ot-jpW">
             <objects>
-                <viewController id="sRf-xy-GOZ" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="sRf-xy-GOZ" customClass="MNGameVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P5F-nh-DOK">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,15 +27,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RrJ-h1-GtH" userLabel="Score">
-                                        <rect key="frame" x="26" y="39" width="53" height="21"/>
+                                        <rect key="frame" x="26" y="39" width="125" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Situa esta cuidad en el mapa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hx6-Hl-5CY" userLabel="City Label">
-                                        <rect key="frame" x="118" y="40" width="492" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v2G-vZ-xfx">
+                                        <rect key="frame" x="159" y="40" width="55" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -60,6 +60,14 @@
                                             <action selector="nextCity:" destination="sRf-xy-GOZ" eventType="touchUpInside" id="Hgi-Q5-bkz"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Situa esta cuidad en el mapa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hx6-Hl-5CY" userLabel="City Label">
+                                        <rect key="frame" x="213" y="32" width="302" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,6 +83,7 @@
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="cityLabel" destination="Hx6-Hl-5CY" id="9UJ-Tq-N3a"/>
+                        <outlet property="cityNumberLabel" destination="v2G-vZ-xfx" id="x9y-uN-RuZ"/>
                         <outlet property="controlsContainerView" destination="yHK-Ai-nSA" id="yfC-dO-7LB"/>
                         <outlet property="nextButton" destination="4cz-S8-drA" id="n8y-hV-bcQ"/>
                         <outlet property="okButton" destination="Aoq-e5-gT2" id="E0T-Q5-bYs"/>

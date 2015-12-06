@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface City : NSObject
+@interface MNCity : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) CGFloat latitude;

@@ -17,32 +17,38 @@
 		4A79C1B71C13AD35007B0184 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C19E1C13AD35007B0184 /* Info.plist */; };
 		4A79C1B81C13AD35007B0184 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79C19F1C13AD35007B0184 /* main.m */; };
 		4A79C1B91C13AD35007B0184 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C1A31C13AD35007B0184 /* Assets.xcassets */; };
-		4A79C1BA1C13AD35007B0184 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79C1B11C13AD35007B0184 /* ViewController.m */; };
-		4A7BD6AE1C14705400D2A965 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6AD1C14705400D2A965 /* City.m */; };
+		4A79C1BA1C13AD35007B0184 /* MNGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79C1B11C13AD35007B0184 /* MNGameVC.m */; };
+		4A7BD6AE1C14705400D2A965 /* MNCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6AD1C14705400D2A965 /* MNCity.m */; };
 		4A7BD6B21C14717700D2A965 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7BD6B11C14717700D2A965 /* CoreGraphics.framework */; };
+		4A7BD6B61C14B9AA00D2A965 /* MNFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6B51C14B9AA00D2A965 /* MNFactory.m */; };
+		4A7BD6B91C14BDFE00D2A965 /* MNHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6B81C14BDFE00D2A965 /* MNHelpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4A58F6E81C0B701A002F125B /* MapNerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapNerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A79C1361C13AC56007B0184 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4A79C1381C13AC67007B0184 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		4A79C1921C13AD35007B0184 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4A79C1931C13AD35007B0184 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4A79C1921C13AD35007B0184 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../main/AppDelegate.h; sourceTree = "<group>"; };
+		4A79C1931C13AD35007B0184 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../main/AppDelegate.m; sourceTree = "<group>"; };
 		4A79C1951C13AD35007B0184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A79C1971C13AD35007B0184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A79C1991C13AD35007B0184 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4A79C19B1C13AD35007B0184 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Main.strings; sourceTree = "<group>"; };
 		4A79C19C1C13AD35007B0184 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4A79C19D1C13AD35007B0184 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		4A79C19E1C13AD35007B0184 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A79C19F1C13AD35007B0184 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4A79C19E1C13AD35007B0184 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../main/Info.plist; sourceTree = "<group>"; };
+		4A79C19F1C13AD35007B0184 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../main/main.m; sourceTree = "<group>"; };
 		4A79C1A31C13AD35007B0184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4A79C1B01C13AD35007B0184 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4A79C1B11C13AD35007B0184 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4A7BD6AC1C14705400D2A965 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
-		4A7BD6AD1C14705400D2A965 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
+		4A79C1B01C13AD35007B0184 /* MNGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGameVC.h; sourceTree = "<group>"; };
+		4A79C1B11C13AD35007B0184 /* MNGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNGameVC.m; sourceTree = "<group>"; };
+		4A7BD6AC1C14705400D2A965 /* MNCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCity.h; sourceTree = "<group>"; };
+		4A7BD6AD1C14705400D2A965 /* MNCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCity.m; sourceTree = "<group>"; };
 		4A7BD6AF1C14714400D2A965 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4A7BD6B11C14717700D2A965 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4A7BD6B41C14B9AA00D2A965 /* MNFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNFactory.h; sourceTree = "<group>"; };
+		4A7BD6B51C14B9AA00D2A965 /* MNFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNFactory.m; sourceTree = "<group>"; };
+		4A7BD6B71C14BDFE00D2A965 /* MNHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNHelpers.h; sourceTree = "<group>"; };
+		4A7BD6B81C14BDFE00D2A965 /* MNHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNHelpers.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,26 +96,10 @@
 		4A79C1901C13AD35007B0184 /* MapNerd */ = {
 			isa = PBXGroup;
 			children = (
-				4A79C1911C13AD35007B0184 /* main */,
 				4A79C1A71C13AD35007B0184 /* src */,
 				4A79C1A01C13AD35007B0184 /* res */,
 			);
 			path = MapNerd;
-			sourceTree = "<group>";
-		};
-		4A79C1911C13AD35007B0184 /* main */ = {
-			isa = PBXGroup;
-			children = (
-				4A79C1921C13AD35007B0184 /* AppDelegate.h */,
-				4A79C1931C13AD35007B0184 /* AppDelegate.m */,
-				4A79C1941C13AD35007B0184 /* LaunchScreen.storyboard */,
-				4A79C1961C13AD35007B0184 /* Main.storyboard */,
-				4A79C1981C13AD35007B0184 /* LaunchScreen.strings */,
-				4A79C19A1C13AD35007B0184 /* Main.strings */,
-				4A79C19E1C13AD35007B0184 /* Info.plist */,
-				4A79C19F1C13AD35007B0184 /* main.m */,
-			);
-			path = main;
 			sourceTree = "<group>";
 		};
 		4A79C1A01C13AD35007B0184 /* res */ = {
@@ -156,6 +146,8 @@
 		4A79C1A61C13AD35007B0184 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				4A79C1981C13AD35007B0184 /* LaunchScreen.strings */,
+				4A79C1941C13AD35007B0184 /* LaunchScreen.storyboard */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -163,8 +155,8 @@
 		4A79C1A71C13AD35007B0184 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				4A79C1A81C13AD35007B0184 /* core */,
 				4A79C1AC1C13AD35007B0184 /* main */,
+				4A79C1A81C13AD35007B0184 /* core */,
 				4A79C1AD1C13AD35007B0184 /* ui */,
 			);
 			path = src;
@@ -183,8 +175,9 @@
 		4A79C1A91C13AD35007B0184 /* business */ = {
 			isa = PBXGroup;
 			children = (
-				4A7BD6AC1C14705400D2A965 /* City.h */,
-				4A7BD6AD1C14705400D2A965 /* City.m */,
+				4A7BD6AC1C14705400D2A965 /* MNCity.h */,
+				4A7BD6AD1C14705400D2A965 /* MNCity.m */,
+				4A7BD6B31C14B96B00D2A965 /* Factory */,
 			);
 			path = business;
 			sourceTree = "<group>";
@@ -199,6 +192,8 @@
 		4A79C1AB1C13AD35007B0184 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4A7BD6B71C14BDFE00D2A965 /* MNHelpers.h */,
+				4A7BD6B81C14BDFE00D2A965 /* MNHelpers.m */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -206,6 +201,12 @@
 		4A79C1AC1C13AD35007B0184 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4A79C1921C13AD35007B0184 /* AppDelegate.h */,
+				4A79C1931C13AD35007B0184 /* AppDelegate.m */,
+				4A79C1961C13AD35007B0184 /* Main.storyboard */,
+				4A79C19A1C13AD35007B0184 /* Main.strings */,
+				4A79C19E1C13AD35007B0184 /* Info.plist */,
+				4A79C19F1C13AD35007B0184 /* main.m */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -221,18 +222,19 @@
 		4A79C1AE1C13AD35007B0184 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A79C1AF1C13AD35007B0184 /* common */,
-				4A79C1B01C13AD35007B0184 /* ViewController.h */,
-				4A79C1B11C13AD35007B0184 /* ViewController.m */,
+				4A79C1B01C13AD35007B0184 /* MNGameVC.h */,
+				4A79C1B11C13AD35007B0184 /* MNGameVC.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
 		};
-		4A79C1AF1C13AD35007B0184 /* common */ = {
+		4A7BD6B31C14B96B00D2A965 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				4A7BD6B41C14B9AA00D2A965 /* MNFactory.h */,
+				4A7BD6B51C14B9AA00D2A965 /* MNFactory.m */,
 			);
-			path = common;
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,9 +313,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A79C1BA1C13AD35007B0184 /* ViewController.m in Sources */,
+				4A7BD6B91C14BDFE00D2A965 /* MNHelpers.m in Sources */,
+				4A7BD6B61C14B9AA00D2A965 /* MNFactory.m in Sources */,
+				4A79C1BA1C13AD35007B0184 /* MNGameVC.m in Sources */,
 				4A79C1B81C13AD35007B0184 /* main.m in Sources */,
-				4A7BD6AE1C14705400D2A965 /* City.m in Sources */,
+				4A7BD6AE1C14705400D2A965 /* MNCity.m in Sources */,
 				4A79C1B21C13AD35007B0184 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +331,7 @@
 				4A79C1951C13AD35007B0184 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ../../main;
 			sourceTree = "<group>";
 		};
 		4A79C1961C13AD35007B0184 /* Main.storyboard */ = {
@@ -335,6 +340,7 @@
 				4A79C1971C13AD35007B0184 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../../main;
 			sourceTree = "<group>";
 		};
 		4A79C1981C13AD35007B0184 /* LaunchScreen.strings */ = {
@@ -344,6 +350,7 @@
 				4A79C19C1C13AD35007B0184 /* es */,
 			);
 			name = LaunchScreen.strings;
+			path = ../../main;
 			sourceTree = "<group>";
 		};
 		4A79C19A1C13AD35007B0184 /* Main.strings */ = {
@@ -353,6 +360,7 @@
 				4A79C19D1C13AD35007B0184 /* es */,
 			);
 			name = Main.strings;
+			path = ../../main;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
