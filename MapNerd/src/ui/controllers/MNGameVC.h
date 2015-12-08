@@ -32,15 +32,6 @@
  */
 - (void)showCity;
 
-/**
- * Centra un mapa en una región (MKCoordinateRegion) con centro y tamaño indicado por los parámetros.
- *
- * @param center Center point for the region.
- * @param distance Size.
- * @param map Map object.
- */
-- (void)setRegion:(CLLocationCoordinate2D)center distance:(int)distance inMap:(MKMapView *)map;
-
 #pragma mark - UIGestureRecognizer
 
 /**

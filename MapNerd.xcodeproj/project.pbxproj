@@ -21,6 +21,10 @@
 		4A7BD6B21C14717700D2A965 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7BD6B11C14717700D2A965 /* CoreGraphics.framework */; };
 		4A7BD6B61C14B9AA00D2A965 /* MNFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6B51C14B9AA00D2A965 /* MNFactory.m */; };
 		4A7BD6B91C14BDFE00D2A965 /* MNHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BD6B81C14BDFE00D2A965 /* MNHelpers.m */; };
+		4AAF57C21C176DBD00CB36CF /* applause-light-02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF57BF1C176DBD00CB36CF /* applause-light-02.wav */; };
+		4AAF57C31C176DBD00CB36CF /* applause-moderate-03.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF57C01C176DBD00CB36CF /* applause-moderate-03.wav */; };
+		4AAF57C41C176DBD00CB36CF /* boo-01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF57C11C176DBD00CB36CF /* boo-01.wav */; };
+		4AAF57C71C176E0300CB36CF /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF57C61C176E0300CB36CF /* SoundManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,11 @@
 		4A7BD6B51C14B9AA00D2A965 /* MNFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNFactory.m; sourceTree = "<group>"; };
 		4A7BD6B71C14BDFE00D2A965 /* MNHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNHelpers.h; sourceTree = "<group>"; };
 		4A7BD6B81C14BDFE00D2A965 /* MNHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNHelpers.m; sourceTree = "<group>"; };
+		4AAF57BF1C176DBD00CB36CF /* applause-light-02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "applause-light-02.wav"; sourceTree = "<group>"; };
+		4AAF57C01C176DBD00CB36CF /* applause-moderate-03.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "applause-moderate-03.wav"; sourceTree = "<group>"; };
+		4AAF57C11C176DBD00CB36CF /* boo-01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "boo-01.wav"; sourceTree = "<group>"; };
+		4AAF57C51C176E0300CB36CF /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		4AAF57C61C176E0300CB36CF /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +147,9 @@
 		4A79C1A51C13AD35007B0184 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4AAF57BF1C176DBD00CB36CF /* applause-light-02.wav */,
+				4AAF57C01C176DBD00CB36CF /* applause-moderate-03.wav */,
+				4AAF57C11C176DBD00CB36CF /* boo-01.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -174,6 +186,8 @@
 		4A79C1A91C13AD35007B0184 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				4AAF57C51C176E0300CB36CF /* SoundManager.h */,
+				4AAF57C61C176E0300CB36CF /* SoundManager.m */,
 				4A7BD6AC1C14705400D2A965 /* MNCity.h */,
 				4A7BD6AD1C14705400D2A965 /* MNCity.m */,
 				4A7BD6B31C14B96B00D2A965 /* Factory */,
@@ -298,6 +312,9 @@
 			files = (
 				4A79C1B31C13AD35007B0184 /* LaunchScreen.storyboard in Resources */,
 				4A79C1B61C13AD35007B0184 /* Main.strings in Resources */,
+				4AAF57C21C176DBD00CB36CF /* applause-light-02.wav in Resources */,
+				4AAF57C31C176DBD00CB36CF /* applause-moderate-03.wav in Resources */,
+				4AAF57C41C176DBD00CB36CF /* boo-01.wav in Resources */,
 				4A79C1B51C13AD35007B0184 /* LaunchScreen.strings in Resources */,
 				4A79C1B91C13AD35007B0184 /* Assets.xcassets in Resources */,
 				4A79C1B41C13AD35007B0184 /* Main.storyboard in Resources */,
@@ -316,6 +333,7 @@
 				4A79C1BA1C13AD35007B0184 /* MNGameVC.m in Sources */,
 				4A79C1B81C13AD35007B0184 /* main.m in Sources */,
 				4A7BD6AE1C14705400D2A965 /* MNCity.m in Sources */,
+				4AAF57C71C176E0300CB36CF /* SoundManager.m in Sources */,
 				4A79C1B21C13AD35007B0184 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

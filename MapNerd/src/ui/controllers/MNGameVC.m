@@ -9,6 +9,9 @@
 #import "MNGameVC.h"
 #import "MNFactory.h"
 #import "MNHelpers.h"
+#import "SoundManager.h"
+
+#define _SoundManager [SoundManager sharedManager]
 
 static const CGFloat kRegionDistance = 2000;
 
@@ -26,11 +29,17 @@ static const CGFloat kRegionDistance = 2000;
 @property (strong, nonatomic) NSMutableArray *cities;
 @property (strong, nonatomic) MNCity *currentCity;
 @property (strong, nonatomic) NSNumber *totalCities;
-@property (nonatomic, assign) CGFloat pages;
 
 @property (strong, nonatomic) MKPointAnnotation *annotation;
 @property (strong, nonatomic) CLLocation *annotationLocation;
 @property (strong, nonatomic) MKPolyline *overlayPolyline;
+
+@property (nonatomic, assign) CGFloat pages;
+@property (nonatomic, assign) CGFloat score;
+@property (nonatomic, assign) BOOL canPressOkButton;
+
+@property (strong, nonatomic) UILongPressGestureRecognizer *longPressGR;
+@property (strong, nonatomic) UISwipeGestureRecognizer *swipeGR;
 
 @end
 
@@ -48,32 +57,137 @@ static const CGFloat kRegionDistance = 2000;
 
 - (void)initGame
 {
-    MNFactory *factory = [[MNFactory alloc] init];
-    self.cities = [[NSMutableArray alloc] initWithArray:[factory cities]];
-    self.pages = 0;
-    self.totalCities = @([_cities count]);
+    MNFactory *factory      = [[MNFactory alloc] init];
+    self.cities             = [[NSMutableArray alloc] initWithArray:[factory cities]];
+    self.totalCities        = @([_cities count]);
+    self.pages              = 0;
+    self.score              = 0;
+    self.scoreLabel.text    = @"- - -";
     
-    // Sets the Standard Map to World View
-    _standardMap.region = MKCoordinateRegionForMapRect(MKMapRectWorld);
+    // Register and Add Long Press gesture to the Standard Map
+    self.longPressGR        = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                     action:@selector(handleLongPressGesture:)];
+    self.longPressGR.allowableMovement = 100.0f;
+    [_standardMap addGestureRecognizer:_longPressGR];
     
-    // Register Long Press gesture to the Standard Map
-    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-    longPressGR.allowableMovement = 100.0f;
+    //Register and Add Swipe gesture to the Standard Map
+    self.swipeGR            = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(nextCityWithSwipe:)];
+    self.swipeGR.direction  = UISwipeGestureRecognizerDirectionLeft;
+    self.swipeGR.numberOfTouchesRequired = 1;
+    [_controlsContainerView addGestureRecognizer:_swipeGR];
     
-    [_standardMap addGestureRecognizer:longPressGR];
-    
+    [self initializeUserInterface];
+}
+
+- (void)initializeUserInterface
+{
     [self selectRandomCity];
-    [self updateInterface];
+    
+    // Update UI
     [self disableNextButton:YES];
+    [self switchToAnswer:NO];
+    [self disableCheckAnswerButton:YES];
+    
+    _canPressOkButton = NO;
+    _longPressGR.enabled = YES;
+    
+    [MNHelpers removeAnnotations:_standardMap];
+    [_standardMap removeOverlay:_overlayPolyline];
+    
+    [self updateInterface];
 }
 
 - (void)selectRandomCity
 {
+    int dice = [MNHelpers getRandomNumberBetween:0 to:(int)[_cities count]];
+    if (dice != 0) {
+        dice -= 1;
+    }
+    self.currentCity = _cities[dice];
+    [self.cities removeObjectAtIndex:dice];
+}
+
+- (void)showCity
+{
+    CLLocation *cityLocation = [[CLLocation alloc] initWithLatitude:_currentCity.latitude longitude:_currentCity.longitude];
+    [MNHelpers setRegion:cityLocation.coordinate distance:kRegionDistance inMap:_satelliteMap];
+}
+
+#pragma mark - UIGestureRecognizer
+
+- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        // First remove annotations if any
+        [MNHelpers removeAnnotations:_standardMap];
+        
+        CGPoint touch = [gestureRecognizer locationInView:_standardMap];
+        self.annotation = [[MKPointAnnotation alloc] init];
+        
+        CLLocationCoordinate2D coord = [_standardMap convertPoint:touch toCoordinateFromView:_standardMap];
+        [self.annotation setCoordinate:coord];
+        
+        self.annotationLocation = [[CLLocation alloc]
+                                   initWithLatitude:[_annotation coordinate].latitude
+                                   longitude:[_annotation coordinate].longitude];
+        
+        [MNHelpers showAnnotaton:_annotationLocation.coordinate
+                           title:@"User selection"
+                        subtitle:[NSString stringWithFormat:@"%f - %f", _currentCity.latitude, _currentCity.longitude]
+                           inMap:_standardMap];
+        [self disableCheckAnswerButton:NO];
+    }
+}
+
+#pragma mark - IBActions
+
+- (IBAction)checkAnswer:(UIButton *)button
+{
+    if ([MNHelpers isAnnotationInMap:_standardMap]){
+        // Show City
+        [self switchToAnswer:YES];
+        
+        // Enable/Disable buttons and gestures
+        [self disableNextButton:NO];
+        [self disableCheckAnswerButton:YES];
+        _canPressOkButton = YES;
+        _longPressGR.enabled = NO;
+        
+        // Calculate error distance
+        CLLocation *cityLocation = [[CLLocation alloc] initWithLatitude:_currentCity.latitude longitude:_currentCity.longitude];
+        
+        int distance = [MNHelpers calculateDistanceFrom:_annotationLocation to:cityLocation];
+        
+        [MNHelpers showAnnotaton:cityLocation.coordinate
+                           title:_currentCity.name
+                        subtitle:[NSString stringWithFormat:@"%d kilometers", distance]
+                           inMap:_standardMap];
+
+        [self checkDistance:distance];
+        
+        // Calculate distance and update interface
+        _score += distance;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%.f km", _score];
+        
+        _overlayPolyline = [MNHelpers drawLineFrom:_annotationLocation to:cityLocation];
+        [_standardMap addOverlay:_overlayPolyline];
+
+        // Center the map between the two annotations
+        [_standardMap showAnnotations:@[_annotationLocation, cityLocation] animated:YES];
+        
+    } else {
+        [self showInstructions];
+    }
+}
+// Deprecated since we are using swipe gestures
+- (IBAction)nextCity:(UIButton *)button
+{
     if ([_cities count] == 0) {
         UIAlertController *alert = [UIAlertController
-                                     alertControllerWithTitle:@"Congratulations!"
-                                     message:@"You've reached the end of the game"
-                                     preferredStyle: UIAlertControllerStyleAlert];
+                                    alertControllerWithTitle:@"Congratulations!"
+                                    message:@"You've reached the end of the game"
+                                    preferredStyle: UIAlertControllerStyleAlert];
         
         UIAlertAction *restart = [UIAlertAction
                                   actionWithTitle:@"Restart"
@@ -88,87 +202,45 @@ static const CGFloat kRegionDistance = 2000;
         [alert addAction:restart];
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
-    
-    } else {
-        int dice = [MNHelpers getRandomNumberBetween:0 to:(int)[_cities count] - 1];
-        if (dice != 0) {
-            dice -= 1;
-        }
-        self.currentCity = _cities[dice];
-        [self.cities removeObjectAtIndex:dice];
-    }
-}
-
-- (void)showCity
-{
-    CLLocation *cityLocation = [[CLLocation alloc] initWithLatitude:_currentCity.latitude longitude:_currentCity.longitude];
-    [self setRegion:cityLocation.coordinate distance:kRegionDistance inMap:_satelliteMap];
-}
-
-- (void)setRegion:(CLLocationCoordinate2D)center distance:(int)distance inMap:(MKMapView *)map
-{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, distance, distance);
-    [map setRegion:region animated:YES];
-    [map regionThatFits:region];
-}
-
-#pragma mark - UIGestureRecognizer
-
-- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan){
-        // First remove annotations
-        [MNHelpers removeAnnotations:_standardMap];
-        CGPoint touch = [gestureRecognizer locationInView:_standardMap];
-        self.annotation = [[MKPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = [_standardMap convertPoint:touch toCoordinateFromView:_standardMap];
-        [self.annotation setCoordinate:coord];
-
-        self.annotationLocation = [[CLLocation alloc]
-                                   initWithLatitude:[_annotation coordinate].latitude
-                                   longitude:[_annotation coordinate].longitude];
         
-        [_standardMap addAnnotation:[MNHelpers showAnnotaton:_annotationLocation.coordinate
-                                                       title:@"User selection"
-                                                    subtitle:[NSString stringWithFormat:@"%f - %f", _currentCity.latitude, _currentCity.longitude]]];
+    } else {
+        [self initializeUserInterface];
     }
 }
 
-#pragma mark - IBActions
-
-- (IBAction)checkAnswer:(UIButton *)button
+- (void)nextCityWithSwipe:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    // Show City
-    [self switchToAnswer:YES];
-    
-    // Enable/Disable buttons
-    [self disableNextButton:NO];
-    [self disableCheckAnswerButton:YES];
-    
-    // Calculate error distance
-    CLLocation *cityLocation = [[CLLocation alloc] initWithLatitude:_currentCity.latitude longitude:_currentCity.longitude];
-    
-    [_standardMap addAnnotation:[MNHelpers showAnnotaton:cityLocation.coordinate
-                                              title:_currentCity.name
-                                           subtitle:[NSString stringWithFormat:@"%f - %f", _currentCity.latitude, _currentCity.longitude]]];
-    
-//    [MNHelpers calculateDistanceFrom:annotationLocation to:cityLocation];
-    _overlayPolyline = [MNHelpers drawLineFrom:_annotationLocation to:cityLocation];
-    [_standardMap addOverlay:_overlayPolyline];
-}
-
-- (IBAction)nextCity:(UIButton *)button
-{
-    // Update UI
-    [self disableNextButton:YES];
-    [self disableCheckAnswerButton:NO];
-    [MNHelpers removeAnnotations:_standardMap];
-    [_standardMap removeOverlay:_overlayPolyline];
-    [self switchToAnswer:NO];
-    
-    // Setup next city
-    [self selectRandomCity];
-    [self updateInterface];
+    if(gestureRecognizer.direction & UISwipeGestureRecognizerDirectionLeft) {
+        
+        if ([MNHelpers isAnnotationInMap:_standardMap] && _canPressOkButton){
+            
+            if ([_cities count] == 0) {
+                UIAlertController *alert = [UIAlertController
+                                            alertControllerWithTitle:@"Congratulations!"
+                                            message:@"You've reached the end of the game"
+                                            preferredStyle: UIAlertControllerStyleAlert];
+                
+                UIAlertAction *restart = [UIAlertAction
+                                          actionWithTitle:@"Restart"
+                                          style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction * _Nonnull action) {
+                                              [self initGame];
+                                          }];
+                UIAlertAction *cancel = [UIAlertAction
+                                         actionWithTitle:@"Cancel"
+                                         style:UIAlertActionStyleDestructive
+                                         handler:nil];
+                [alert addAction:restart];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            } else {
+                [self initializeUserInterface];
+            }
+        } else {
+            [self showInstructions];
+        }
+    }
 }
 
 #pragma mark - Private methods
@@ -176,9 +248,10 @@ static const CGFloat kRegionDistance = 2000;
 - (void)updateInterface
 {
     if (_pages < [_totalCities intValue]) {
+        // Sets the Standard Map to World View
+        _standardMap.region = MKCoordinateRegionForMapRect(MKMapRectWorld);
         _pages ++;
         self.cityNumberLabel.text = [NSString stringWithFormat:@"%.f/%@", _pages, _totalCities];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d points", 5000];
         [self showCity];
     }
 }
@@ -212,6 +285,33 @@ static const CGFloat kRegionDistance = 2000;
     } else {
         self.cityLabel.text = @"Situa esta cuidad en el mapa";
     }
+}
+
+- (void)checkDistance:(int)distance
+{
+    if (distance < 300) {
+        [_SoundManager playSound:@"applause-moderate-03.wav"];
+    } else if ( distance > 300 && distance < 1000) {
+        [_SoundManager playSound:@"applause-light-02.wav"];
+    } else {
+        [_SoundManager playSound:@"boo-01.wav"];
+    }
+}
+
+- (void)showInstructions
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Instructions"
+                                message:@"You have to provide a location first."
+                                preferredStyle: UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil];
+    
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - MapKit Delegate Methods

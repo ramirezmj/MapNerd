@@ -57,7 +57,7 @@
                                             <action selector="checkAnswer:" destination="sRf-xy-GOZ" eventType="touchUpInside" id="jwx-Md-hw6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4cz-S8-drA" userLabel="Next Button">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4cz-S8-drA" userLabel="Next Button">
                                         <rect key="frame" x="670" y="28" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>

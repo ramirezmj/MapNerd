@@ -42,12 +42,27 @@
  */
 + (MKPolyline *)drawLineFrom:(CLLocation *)from to:(CLLocation *)to;
 
+/**
+ * Centra un mapa en una región (MKCoordinateRegion) con centro y tamaño indicado por los parámetros.
+ *
+ * @param center Center point for the region.
+ * @param distance Size.
+ * @param map Map object.
+ */
++ (void)setRegion:(CLLocationCoordinate2D)center distance:(int)distance inMap:(MKMapView *)map;
+
+
 #pragma mark - Annotation methods
 
 /**
  * Borra las anotaciones y los overlays anteriores del mapaMundo.
  */
 + (void)removeAnnotations:(MKMapView *)map;
+
+/**
+ * Comprueba si hay anotaciones en el mapa
+ */
++ (BOOL)isAnnotationInMap:(MKMapView *)map;
 
 /**
  * Muestra una anotación (MKPointAnnotation) en el mapaMundo.
@@ -57,6 +72,6 @@
  * @param title Title of the annotation.
  * @param subtitle Subtitle of the annotation.
  */
-+ (MKPointAnnotation *)showAnnotaton:(CLLocationCoordinate2D)coordinates title:(NSString *)title subtitle:(NSString *)subtitle;
++ (void)showAnnotaton:(CLLocationCoordinate2D)coordinates title:(NSString *)title subtitle:(NSString *)subtitle inMap:(MKMapView *)map;
 
 @end
