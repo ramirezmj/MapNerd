@@ -14,7 +14,6 @@
 		4A79C1B41C13AD35007B0184 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C1961C13AD35007B0184 /* Main.storyboard */; };
 		4A79C1B51C13AD35007B0184 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C1981C13AD35007B0184 /* LaunchScreen.strings */; };
 		4A79C1B61C13AD35007B0184 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C19A1C13AD35007B0184 /* Main.strings */; };
-		4A79C1B71C13AD35007B0184 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C19E1C13AD35007B0184 /* Info.plist */; };
 		4A79C1B81C13AD35007B0184 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79C19F1C13AD35007B0184 /* main.m */; };
 		4A79C1B91C13AD35007B0184 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A79C1A31C13AD35007B0184 /* Assets.xcassets */; };
 		4A79C1BA1C13AD35007B0184 /* MNGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79C1B11C13AD35007B0184 /* MNGameVC.m */; };
@@ -300,7 +299,6 @@
 				4A79C1B31C13AD35007B0184 /* LaunchScreen.storyboard in Resources */,
 				4A79C1B61C13AD35007B0184 /* Main.strings in Resources */,
 				4A79C1B51C13AD35007B0184 /* LaunchScreen.strings in Resources */,
-				4A79C1B71C13AD35007B0184 /* Info.plist in Resources */,
 				4A79C1B91C13AD35007B0184 /* Assets.xcassets in Resources */,
 				4A79C1B41C13AD35007B0184 /* Main.storyboard in Resources */,
 			);

@@ -17,14 +17,40 @@
     return (int)from + arc4random() % (to - from+ 1);
 }
 
-+ (int)distance:(CLLocation *)from to:(CLLocation *)to
++ (int)calculateDistanceFrom:(CLLocation *)from to:(CLLocation *)to
 {
-    return 0;
+    CLLocationDistance kilometers = [to distanceFromLocation:from] / 1000;
+    
+    return (int)roundf(kilometers);
 }
 
-+ (void)drawLineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
++ (MKPolyline *)drawLineFrom:(CLLocation *)from to:(CLLocation *)to
 {
+    CLLocationCoordinate2D points[2];
     
+    points[0] = from.coordinate;
+    points[1] = to.coordinate;
+
+    return [MKPolyline polylineWithCoordinates:points count:2];
+}
+
+#pragma mark - Annotation methods
+
++ (void)removeAnnotations:(MKMapView *)map
+{
+    for (id annotation in map.annotations) {
+        [map removeAnnotation:annotation];
+    }
+}
+
++ (MKPointAnnotation *)showAnnotaton:(CLLocationCoordinate2D)coordinates title:(NSString *)title subtitle:(NSString *)subtitle
+{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:coordinates];
+    [annotation setTitle:title];
+    [annotation setSubtitle:subtitle];
+    
+    return annotation;
 }
 
 @end

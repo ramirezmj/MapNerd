@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MNGameVC : UIViewController
+@interface MNGameVC : UIViewController <MKMapViewDelegate>
 
 #pragma mark - Game methods
 
@@ -40,22 +40,6 @@
  * @param map Map object.
  */
 - (void)setRegion:(CLLocationCoordinate2D)center distance:(int)distance inMap:(MKMapView *)map;
-
-#pragma mark - Annotation methods
-
-/**
- * Borra las anotaciones y los overlays anteriores del mapaMundo.
- */
-- (void)eraseAnnotations;
-
-/**
- * Muestra una anotación (MKPointAnnotation) en el mapaMundo.
- *
- * @param coordinates Coordinate of the annotation.
- * @param title Title of the annotation.
- * @param subtitle Subtitle of the annotation.
- */
-- (void)showAnnotaton:(CLLocationCoordinate2D)coordinates title:(NSString *)title subtitle:(NSString *)subtitle;
 
 #pragma mark - UIGestureRecognizer
 

@@ -16,11 +16,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="512"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="sRf-xy-GOZ" id="5lX-Pn-vGw"/>
+                                </connections>
                             </mapView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" id="gd0-WS-Kwx" userLabel="Standard Map">
                                 <rect key="frame" x="0.0" y="512" width="768" height="512"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="sRf-xy-GOZ" id="w2T-jd-0y9"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" id="yHK-Ai-nSA">
                                 <rect key="frame" x="20" y="462" width="728" height="100"/>

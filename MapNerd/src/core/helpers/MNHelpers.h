@@ -32,7 +32,7 @@
  *
  * @return distance in kilometers between the two points.
  */
-+ (int)distance:(CLLocation *)from to:(CLLocation *)to;
++ (int)calculateDistanceFrom:(CLLocation *)from to:(CLLocation *)to;
 
 /**
  * Dibuja una línea (MKPolyline) entre dos puntos.
@@ -40,6 +40,23 @@
  * @param from Origin value of the interval.
  * @param to Destination value of the interval.
  */
-+ (void)drawLineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to;
++ (MKPolyline *)drawLineFrom:(CLLocation *)from to:(CLLocation *)to;
+
+#pragma mark - Annotation methods
+
+/**
+ * Borra las anotaciones y los overlays anteriores del mapaMundo.
+ */
++ (void)removeAnnotations:(MKMapView *)map;
+
+/**
+ * Muestra una anotación (MKPointAnnotation) en el mapaMundo.
+ * Solo falta añadirla al mapa con: [_mapa addAnnotation:anotation];
+ *
+ * @param coordinates Coordinate of the annotation.
+ * @param title Title of the annotation.
+ * @param subtitle Subtitle of the annotation.
+ */
++ (MKPointAnnotation *)showAnnotaton:(CLLocationCoordinate2D)coordinates title:(NSString *)title subtitle:(NSString *)subtitle;
 
 @end
